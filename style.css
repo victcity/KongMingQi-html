@@ -1,0 +1,61 @@
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+#message {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(7, 50px); /* 7列，每列50px */
+    grid-template-rows: repeat(7, 50px);    /* 7行，每行50px */
+    gap: 5px; /* 格子之间的间距 */
+    background-color: #ddd; /* 棋盘背景色 */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: #eee; /* 默认格子颜色 */
+    border-radius: 5px;
+    display: flex; /* 使用 flex 布局，使数字居中 */
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    font-size: 1.2em; /* 数字字体大小 */
+    color: #777; /* 数字颜色，灰色 */
+    font-weight: bold; /* 数字加粗 */
+}
+
+.cell.invalid {
+    background-color: transparent; /* 无效格子透明 */
+    cursor: default; /* 无效格子鼠标样式 */
+    color: transparent; /* 无效格子数字也透明 */
+}
+
+.cell.empty {
+    background-color: #f0f0f0; /* 空位格子颜色 */
+}
+
+.peg {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50; /* 棋子颜色，绿色 */
+    border-radius: 50%; /* 圆形棋子 */
+    cursor: pointer;
+}
+
+.peg.selected {
+    background-color: #ff9800; /* 选中棋子颜色，橙色 */
+}
+
+.cell:hover {
+    background-color: #ccc; /* 鼠标悬停在格子上的颜色 */
+}
