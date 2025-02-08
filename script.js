@@ -41,6 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     cell.classList.add('invalid');
                 }
 
+                // 根据数字添加不同的背景颜色 class
+                if (cellNumber === 3) {
+                    cell.classList.add('cell-3');
+                } else if (cellNumber === 5) {
+                    cell.classList.add('cell-5');
+                } else if (cellNumber === 7) {
+                    cell.classList.add('cell-7');
+                }
+
+
                 if (cellType === 2) {
                     cell.classList.add('empty');
                 } else if (cellType === 1) {
@@ -57,49 +67,49 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("initBoard finished"); // Debug log 3: initBoard 结束
     }
 
-    // 处理格子点击事件
+    // 处理格子点击事件 (保持不变)
     function handleCellClick(event) {
-        console.log("handleCellClick called"); // Debug log 4: handleCellClick 开始
+        console.log("handleCellClick called");
         const cell = event.currentTarget;
-        console.log("handleCellClick: clicked cell:", cell); // Debug log 5: 点击的 cell 元素
+        console.log("handleCellClick: clicked cell:", cell);
         const row = parseInt(cell.dataset.row);
         const col = parseInt(cell.dataset.col);
         const cellType = boardState[row][col];
-        console.log(`handleCellClick: row=${row}, col=${col}, cellType=${cellType}`); // Debug log 6: 行列和 cellType
+        console.log(`handleCellClick: row=${row}, col=${col}, cellType=${cellType}`);
 
-        if (cellType === 1) { // 点击了棋子
-            console.log("handleCellClick: cellType is 1, calling selectPeg"); // Debug log 7: cellType 判断为 1
+        if (cellType === 1) {
+            console.log("handleCellClick: cellType is 1, calling selectPeg");
             selectPeg(cell);
-        } else if (cellType === 2) { // 点击了空位
-            console.log("handleCellClick: cellType is 2, checking selectedPeg"); // Debug log 8: cellType 判断为 2
+        } else if (cellType === 2) {
+            console.log("handleCellClick: cellType is 2, checking selectedPeg");
             if (selectedPeg) {
                 attemptMove(row, col);
             }
         }
-        console.log("handleCellClick finished"); // Debug log 9: handleCellClick 结束
+        console.log("handleCellClick finished");
     }
 
 
-    // 选中棋子
+    // 选中棋子 (保持不变)
     function selectPeg(cell) {
-        console.log("selectPeg called with cell:", cell); // Debug Log 1: selectPeg 开始, 打印 cell
+        console.log("selectPeg called with cell:", cell);
         const pegElement = cell.querySelector('.peg'); // 使用 querySelector 获取 peg 元素
-        if (selectedPeg && selectedPeg.querySelector('.peg')) { // 使用 querySelector 检查和操作之前的选中棋子
-            console.log("selectPeg: removing 'selected' from:", selectedPeg.querySelector('.peg')); // Debug Log 2: 移除之前的选中
+        if (selectedPeg && selectedPeg.querySelector('.peg')) {
+            console.log("selectPeg: removing 'selected' from:", selectedPeg.querySelector('.peg'));
             selectedPeg.querySelector('.peg').classList.remove('selected');
         } else {
-            console.log("selectPeg: No previous selectedPeg or no peg found in previous selectedPeg"); // Debug Log 3: 没有之前的选中或 peg
+            console.log("selectPeg: No previous selectedPeg or no peg found in previous selectedPeg");
         }
         selectedPeg = cell;
-        console.log("selectPeg: selectedPeg set to:", selectedPeg); // Debug Log 4: 设置 selectedPeg
+        console.log("selectPeg: selectedPeg set to:", selectedPeg);
 
-        if (selectedPeg && pegElement) { // 确保 selectedPeg 和 pegElement 都存在
-            console.log("selectPeg: adding 'selected' to:", pegElement); // Debug Log 5: 添加新的选中
-            pegElement.classList.add('selected'); // 现在操作的是 pegElement，应该没问题了
+        if (selectedPeg && pegElement) {
+            console.log("selectPeg: adding 'selected' to:", pegElement);
+            pegElement.classList.add('selected');
         } else {
-            console.log("selectPeg: ERROR - cell or pegElement is undefined!", cell, selectedPeg, pegElement); // Debug Log 6: 错误信息，cell 或 pegElement 为 undefined
+            console.log("selectPeg: ERROR - cell or pegElement is undefined!", cell, selectedPeg, pegElement);
         }
-        console.log("selectPeg finished"); // Debug Log 7: selectPeg 结束
+        console.log("selectPeg finished");
     }
 
 
@@ -134,21 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 执行移动
+    // 执行移动 (保持不变)
     function makeMove(startRow, startCol, targetRow, targetCol, jumpedRow, jumpedCol) {
-        boardState[startRow][startCol] = 2; // 起始位置变为空位
-        boardState[jumpedRow][jumpedCol] = 2; // 跳过位置变为空位
-        boardState[targetRow][targetCol] = 1; // 目标位置变为棋子
+        boardState[startRow][startCol] = 2;
+        boardState[jumpedRow][jumpedCol] = 2;
+        boardState[targetRow][targetCol] = 1;
 
-        if (selectedPeg && selectedPeg.querySelector('.peg')) { // 确保 selectedPeg 及其 peg 存在, 使用 querySelector
-            selectedPeg.querySelector('.peg').classList.remove('selected'); // 取消选中, 使用 querySelector
+        if (selectedPeg && selectedPeg.querySelector('.peg')) {
+            selectedPeg.querySelector('.peg').classList.remove('selected');
         } else {
             console.log("makeMove: Warning - selectedPeg or peg not found, cannot remove 'selected' class.");
         }
         selectedPeg = null;
 
-        initBoard(); // 重新绘制棋盘
-        checkWin();   // 检查是否胜利
+        initBoard();
+        checkWin();
     }
 
     // 检查是否胜利 (保持不变)
@@ -165,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pegCount === 1) {
             messageElement.textContent = '恭喜你，胜利了！';
         } else {
-            messageElement.textContent = ''; // 清空消息
+            messageElement.textContent = '';
         }
     }
 

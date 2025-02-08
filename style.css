@@ -23,7 +23,7 @@
 .cell {
     width: 50px;
     height: 50px;
-    background-color: #eee; /* 默认格子颜色 */
+    background-color: #eee; /* 默认格子颜色 (可以根据需要调整) */
     border-radius: 5px;
     display: flex; /* 使用 flex 布局，使数字居中 */
     justify-content: center; /* 水平居中 */
@@ -34,14 +34,24 @@
     font-weight: bold; /* 数字加粗 */
 }
 
+/* 为数字 3, 5, 7 的格子添加不同的背景颜色 */
+.cell-3 {
+    background-color: #BCE7FD; /* 例如：浅蓝色 */
+}
+
+.cell-5 {
+    background-color: #FFD8BE; /* 例如：浅橙色 */
+}
+
+.cell-7 {
+    background-color: #D4FFB3; /* 例如：浅绿色 */
+}
+
+
 .cell.invalid {
     background-color: transparent; /* 无效格子透明 */
     cursor: default; /* 无效格子鼠标样式 */
     color: transparent; /* 无效格子数字也透明 */
-}
-
-.cell.empty {
-    background-color: #f0f0f0; /* 空位格子颜色 */
 }
 
 .peg {
