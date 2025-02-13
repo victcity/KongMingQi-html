@@ -3,4 +3,5 @@
 
 https://victcity.github.io/KongMingQi-html/
 
+点击下面链接进行试玩
 ![](chrome_ki3MfzUZch.png)
